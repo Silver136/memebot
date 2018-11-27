@@ -220,7 +220,7 @@ bot.on("message", (msg) => {
 
 
 	if(command === "help"){
-		regList = ["greentext: posts a random greentext","userinfo: retrieves info about you","*getuserinfo: retrieves info about a person you @","*name: allows admins to quickly change usernames with an @","*purge: completely clears all messages loaded on a page","*clear: deletes a set number of messages defined my admin","*sentai(WIP): sends random hentai to whoever the admin @s","*pm: sends a pm to whomever the admin @s","*del: deletes messages of @'d user from a set number of retrieved messages", "8ball", "rev: reverses message", "cry", "facepalm","fuck","choose: chooses a ranbdom selection from words in message","kmf: 'kill, marry, fuck'","doggo","rage","lenny","nazi","4FCG","sad","autism","ree","owo","what","nigga","spicy","*power: sends a tts message","brits","friendly","o","deusvult","pooh","f","normie","rip","lmao","kek","kappa","noice","faggot","ayy","shook","eyebrows","dab","weeb","bait","joke","#hentai(WIP): posts a random hentai image","#neko(WIP): posts a random neko image"]
+		regList = ["greentext: posts a random greentext","userinfo: retrieves info about you","*getuserinfo: retrieves info about a person you @","*name: allows admins to quickly change usernames with an @","*purge: completely clears all messages loaded on a page","*clear: deletes a set number of messages defined my admin","*sentai(WIP): sends random hentai to whoever the admin @s","*pm: sends a pm to whomever the admin @s","*del: deletes messages of @'d user from a set number of retrieved messages", "8ball", "rev: reverses message", "cry", "facepalm","fuck","choose: chooses a ranbdom selection from words in message","kmf: 'kill, marry, fuck'","doggo","rage","lenny","nazi","4FCG","autism","ree","owo","what","nigga","spicy","*power: sends a tts message","brits","friendly","o","deusvult","pooh","f","normie","rip","lmao","kek","kappa","noice","faggot","ayy","shook","eyebrows","dab","weeb","bait","joke","#hentai(WIP): posts a random hentai image","#neko(WIP): posts a random neko image"]
 		rabbitsList = ["fabio","unfabio","camp","uncamp"]
 		const embed = new Discord.RichEmbed()
 			.setAuthor('Command List', 'https://3c2ba678857e073c9506-9b92ffc51ccdc874f7e956dfcfbdbfba.ssl.cf5.rackcdn.com/meme-bot.png')
@@ -365,14 +365,6 @@ if(command === "4FCG") {
 		.setColor(color)
 		.setImage("https://cdn.discordapp.com/attachments/465358602216144918/514541044780498955/gasgasgas.png")
 	msg.channel.send({embed})
-};
-
-if(command === "sad"){
-	const embed = new Discord.RichEmbed()
-		.setImage('https://img.clipartfest.com/32daef156af6ae1c7b75255ad3275ff0_6-pathetic-pathetic_500-324.png')
-		.setColor(0x00AE86)
-	msg.channel.send({embed});
-	if(msg.channel.type !== "dm"){ msg.delete(); }
 };
 
 if(command === "autism"){
