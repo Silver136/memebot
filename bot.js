@@ -220,7 +220,7 @@ bot.on("message", (msg) => {
 
 
 	if(command === "help"){
-		regList = ["greentext: posts a random greentext","userinfo: retrieves info about you","*getuserinfo: retrieves info about a person you @","*name: allows admins to quickly change usernames with an @","*purge: completely clears all messages loaded on a page","*clear: deletes a set number of messages defined my admin","*sentai: sends random hentai to whoever the admin @s","*pm: sends a pm to whomever the admin @s","*del: deletes messages of @'d user from a set number of retrieved messages", "8ball", "rev: reverses message", "cry", "facepalm","fuck","choose: chooses a ranbdom selection from words in message","kmf: 'kill, marry, fuck'","doggo","rage","lenny","nazi","4FCG","sad","autism","ree","owo","what","nigga","spicy","*power: sends a tts message","brits","friendly","night","o","deusvult","pooh","f","normie","rip","lmao","kek","kappa","noice","faggot","ayy","shook","eyebrows","dab","weeb","bait","joke","#hentai: posts a random hentai image","#neko: posts a random neko image"]
+		regList = ["greentext: posts a random greentext","userinfo: retrieves info about you","*getuserinfo: retrieves info about a person you @","*name: allows admins to quickly change usernames with an @","*purge: completely clears all messages loaded on a page","*clear: deletes a set number of messages defined my admin","*sentai(WIP): sends random hentai to whoever the admin @s","*pm: sends a pm to whomever the admin @s","*del: deletes messages of @'d user from a set number of retrieved messages", "8ball", "rev: reverses message", "cry", "facepalm","fuck","choose: chooses a ranbdom selection from words in message","kmf: 'kill, marry, fuck'","doggo","rage","lenny","nazi","4FCG","sad","autism","ree","owo","what","nigga","spicy","*power: sends a tts message","brits","friendly","o","deusvult","pooh","f","normie","rip","lmao","kek","kappa","noice","faggot","ayy","shook","eyebrows","dab","weeb","bait","joke","#hentai(WIP): posts a random hentai image","#neko(WIP): posts a random neko image"]
 		rabbitsList = ["fabio","unfabio","camp","uncamp"]
 		const embed = new Discord.RichEmbed()
 			.setAuthor('Command List', 'https://3c2ba678857e073c9506-9b92ffc51ccdc874f7e956dfcfbdbfba.ssl.cf5.rackcdn.com/meme-bot.png')
@@ -360,8 +360,11 @@ if(command === "nazi"){
 //			bot.destroy().then(() => bot.login(config.token))
 
 if(command === "4FCG") {
-	msg.channel.sendFile("gasgasgas.png");
 	if(msg.channel.type !== "dm"){ msg.delete(); }
+	const embed = new Discord.RichEmbed()
+		.setColor(color)
+		.setImage("https://cdn.discordapp.com/attachments/465358602216144918/514541044780498955/gasgasgas.png")
+	msg.channel.send({embed})
 };
 
 if(command === "sad"){
@@ -416,8 +419,11 @@ if (command === "what"){
 	};
 
 if(command === "nigga") {
-		msg.channel.sendFile("shit.jpg")
 		if(msg.channel.type !== "dm"){ msg.delete(); }
+		const embed = new Discord.RichEmbed()
+			.setColor(color)
+			.setImage("https://cdn.discordapp.com/attachments/491320570558808074/517098097394974740/shit.jpg")
+		msg.channel.send({embed})
 	};
 
 	if (command === "spicy") {
@@ -429,7 +435,7 @@ if(command === "nigga") {
 	};
 
 if(command === "power"){
-	perms = msg.user.permissions;
+	perms = msg.member.permissions;
 
 	if(msg.channel.type !== "dm"){ msg.delete(); }
 
@@ -451,11 +457,6 @@ if(command === "friendly") {
   msg.channel.send("What's this you've said to me, my good friend? Ill have you know I graduated top of my class in conflict resolution, and Ive been involved in numerous friendly discussions, and I have over 300 confirmed friends. I am trained in polite discussions and I'm the top mediator in the entire neighborhood. You are worth more to me than just another target. I hope we will come to have a friendship never before seen on this Earth. Don't you think you might be hurting someone's feelings saying that over the internet? Think about it, my friend. As we speak I am contacting my good friends across the USA and your P.O. box is being traced right now so you better prepare for the greeting cards, friend. The greeting cards that help you with your hate. You should look forward to it, friend. I can be anywhere, anytime for you, and I can calm you in over seven hundred ways, and that's just with my chess set. Not only am I extensively trained in conflict resolution, but I have access to the entire group of my friends and I will use them to their full extent to start our new friendship. If only you could have known what kindness and love your little comment was about to bring you, maybe you would have reached out sooner. But you couldn't, you didn't, and now we get to start a new friendship, you unique person. I will give you gifts and you might have a hard time keeping up. You're finally living, friend.")
 	if(msg.channel.type !== "dm"){ msg.delete(); }
 };
-
-	if(command === "night") {
-		msg.channel.sendFile("night.gif");
-		if(msg.channel.type !== "dm"){ msg.delete(); }
-	};
 
   if (command === "o") {
 		msg.channel.send(" ༼ つ ◕◕ ༽つ");
@@ -486,8 +487,11 @@ if (command === "spicier") {
 };
 
  if (command === "f") {
-	 msg.channel.sendFile("respect.jpg");
 	 if(msg.channel.type !== "dm"){ msg.delete(); }
+	 const embed = new Discord.RichEmbed()
+	 	.setColor(color)
+		.setImage("https://cdn.discordapp.com/attachments/465358602216144918/517042211985031168/respect.jpg")
+	msg.channel.send({embed})
  };
 
 if(command === "normie") {
@@ -526,8 +530,11 @@ if (command === "lmao") {
 };
 
 if(command === "kek") {
-  msg.channel.sendFile("kek.jpg")
  	if(msg.channel.type !== "dm"){ msg.delete(); }
+	const embed = new Discord.RichEmbed()
+		.setColor(color)
+		.setImage("https://cdn.discordapp.com/attachments/491320570558808074/517098264139530252/kek.jpg")
+	msg.channel.send({embed})
 };
 
 if(command === "kappa") {
@@ -552,8 +559,11 @@ if(command === "eyebrows"){
 };
 
 if(command === "faggot") {
-	msg.channel.sendFile("faggot.jpg");
 	if(msg.channel.type !== "dm"){ msg.delete(); }
+	const embed = new Discord.RichEmbed()
+		.setColor(color)
+		.setImage("https://cdn.discordapp.com/attachments/491320570558808074/517098522890207234/faggot.jpg")
+	msg.channel.send({embed})
 };
 
 if(command === "ayy") {
@@ -683,10 +693,10 @@ if(command === "userinfo"){
 		}
 	}
 
-	if(aut.fetchProfile().premium){
+	/*if(aut.fetchProfile().premium){
 		prem = "Premium User";
 		premDate = aut.UserProfile.premiumSince;
-	}
+	}*/
 
 	const embed = new Discord.RichEmbed()
 		.setTitle("User Information")
@@ -722,10 +732,10 @@ if(command === "getuserinfo"){
 			}
 		}
 
-		if(aut.UserProfile.premium){
+		/*if(aut.fetchProfile().premium){
 			prem = "Premium User";
 			premDate = aut.UserProfile.premiumSince;
-		}
+		}*/
 
 		const embed = new Discord.RichEmbed()
 			.setTitle("User Information")
