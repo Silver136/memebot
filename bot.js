@@ -732,7 +732,11 @@ if(command === "getuserinfo"){
 			}
 		}
 
+<<<<<<< HEAD
 		/*if(aut.fetchProfile().premium){
+=======
+		/*if(aut.UserProfile.premium){
+>>>>>>> d3fbbf4868647cb95d754243393ad4f5c1a37d8b
 			prem = "Premium User";
 			premDate = aut.UserProfile.premiumSince;
 		}*/
