@@ -429,7 +429,7 @@ if(command === "nigga") {
 	};
 
 if(command === "power"){
-	perms = msg.user.permissions;
+	perms = msg.member.permissions;
 
 	if(msg.channel.type !== "dm"){ msg.delete(); }
 
