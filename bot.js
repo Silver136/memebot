@@ -683,10 +683,10 @@ if(command === "userinfo"){
 		}
 	}
 
-	if(aut.fetchProfile().premium){
+	/*if(aut.fetchProfile().premium){
 		prem = "Premium User";
 		premDate = aut.UserProfile.premiumSince;
-	}
+	}*/
 
 	const embed = new Discord.RichEmbed()
 		.setTitle("User Information")
@@ -722,10 +722,10 @@ if(command === "getuserinfo"){
 			}
 		}
 
-		if(aut.UserProfile.premium){
+		/*if(aut.UserProfile.premium){
 			prem = "Premium User";
 			premDate = aut.UserProfile.premiumSince;
-		}
+		}*/
 
 		const embed = new Discord.RichEmbed()
 			.setTitle("User Information")
