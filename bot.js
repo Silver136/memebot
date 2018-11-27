@@ -692,6 +692,7 @@ if(command === "userinfo"){
 
 	const embed = new Discord.RichEmbed()
 		.setTitle("User Information")
+		.setColor(color)
 		.setThumbnail(aut.avatarURL)
 		.setAuthor(aut.tag, aut.avatarURL)
 		.addField("Discord Tag: ", aut.username)
@@ -732,6 +733,7 @@ if(command === "getuserinfo"){
 
 		const embed = new Discord.RichEmbed()
 			.setTitle("User Information")
+			.setColor(color)
 			.setThumbnail(aut.avatarURL)
 			.setAuthor(aut.tag, aut.avatarURL)
 			.addField("Discord Tag: ", aut.username)
