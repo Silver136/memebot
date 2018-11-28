@@ -118,7 +118,7 @@ if(command === "test"){
 					if(msg.channel.type !== "dm"){ msg.delete(); }
 				}
 			};
-		}
+		}//end of rabbits commands
 
 		if(command === "del"){
 			if(msg.channel.type !== "dm"){ msg.delete(); }
@@ -170,16 +170,17 @@ if(command === "test"){
 		};
 
 		if(command === "sentai"){
+			if(msg.channel.type !== "dm"){ msg.delete(); }
 			perms = msg.member.permissions;
 
 			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"]) || msg.author.id === "446419931286863883"){
-				if(msg.channel.type !== "dm"){ msg.delete(); }
+
 				mention = msg.mentions.users
 				rec = argument.indexOf(mention)
 				argument.splice(mention, 1)
 				type = [".jpg", ".png"];
 				file = type[Math.floor(Math.random() * type.length)];
-				choice = [Math.floor(Math.random() * 3000)];
+				choice = [Math.floor(Math.random() * 1805)];
 				msg.mentions.users.first().sendFile("/folder/file ("+ choice +").jpg");
 			}
 		};
@@ -637,7 +638,7 @@ if(command === "hentai"){
 	}else{
 		var type = [".jpg", ".png"];
 		let file = type[Math.floor(Math.random() * type.length)];
-		let choice = [Math.floor(Math.random() * 3200)];
+		let choice = [Math.floor(Math.random() * 1805)];
 		msg.channel.sendFile("/folder/file ("+ choice +").jpg");
 	}
 };
