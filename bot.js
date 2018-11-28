@@ -764,7 +764,7 @@ if(command === "ban"){
 		msg.delete();
 		if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
 		 	target = msg.guild.member(msg.mentions.users.first());
-			reason = argument.splice(0,1).join(" ");
+			reason = argument.splice(0,argument.length).join(" ");
 			target.ban(reason);
 			msg.channel.send(target + " banned for: " + reason);
 		}
@@ -778,7 +778,7 @@ if(command === "kick"){
 		msg.delete();
 		if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
 			target = msg.guild.member(msg.mentions.users.first());
-			reason = argument.splice(0,1).join(" ");
+			reason = argument.splice(0,argument.length).join(" ");
 			target.kick(reason);
 			msg.channel.send(target + " kicked for: " + reason);
 		}
