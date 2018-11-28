@@ -59,9 +59,9 @@ bot.on("message", (msg) => {
   //and argument is an array of everything written after the initial command
   //seperated by spaces.
 
-	if(command === "test"){
-		msg.delete();
-		}
+if(command === "test"){
+	msg.delete();
+}
 
 	if(msg.channel.type !== "dm"){ //server commands
 
@@ -672,9 +672,10 @@ if(command === "smart"){
 if(command === "userinfo"){
 	if(msg.channel.type !== "dm"){ msg.delete(); }
 	aut = msg.author;
+	cli = aut.user.client;
 	let gameName = "nothing";
 	let stream = "nowhere";
-	//let prem = "Not a Premium User";
+	let prem = "Not a Premium User";
 	//let premDate = "Never";
 
 	if(aut.presence.game !== null){
@@ -685,24 +686,25 @@ if(command === "userinfo"){
 		}
 	}
 
-	/*if(aut.fetchProfile().premium){
+	if(cli.premium){
 		prem = "Premium User";
-		premDate = aut.UserProfile.premiumSince;
-	}*/
+	}
 
 	const embed = new Discord.RichEmbed()
 		.setTitle("User Information")
 		.setColor(color)
 		.setThumbnail(aut.avatarURL)
 		.setAuthor(aut.tag, aut.avatarURL)
+		.addField("Server Name: ", aut.discriminator)
 		.addField("Discord Tag: ", aut.username)
 		.addField("Account Created: ", aut.createdAt)
-		//.addField("Premium Staus: ", prem)
+		.addField("Premium Staus: ", prem)
 		//.addField("Premium since: ", premDate)
 		.addField("User ID: ", aut.id)
 		.addField("Currently: ", aut.presence.status)
 		.addField("Currently playing: ", gameName)
 		.addField("Currently streaming: ", stream)
+		.addField("Last Message: ", aut.lastMessage)
 	msg.channel.send({embed});
 }
 
@@ -713,9 +715,10 @@ if(command === "getuserinfo"){
 
 	if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
 		aut = msg.mentions.users.first();
+		cli = aut.user.client;
 		let gameName = "nothing";
 		let stream = "nowhere";
-		//let prem = "Not a Premium User";
+		let prem = "Not a Premium User";
 		//let premDate = "Never";
 		if(aut.presence.game !== null){
 			gameName = aut.presence.game.name;
@@ -726,24 +729,25 @@ if(command === "getuserinfo"){
 		}
 
 
-		/*if(aut.fetchProfile().premium){
+		if(cli.premium){
 			prem = "Premium User";
-			premDate = aut.UserProfile.premiumSince;
-		}*/
+		}
 
 		const embed = new Discord.RichEmbed()
 			.setTitle("User Information")
 			.setColor(color)
 			.setThumbnail(aut.avatarURL)
 			.setAuthor(aut.tag, aut.avatarURL)
+			.addField("Server Name: ", aut.discriminator)
 			.addField("Discord Tag: ", aut.username)
 			.addField("Account Created: ", aut.createdAt)
-			//.addField("Premium Staus: ", prem)
+			.addField("Premium Staus: ", prem)
 			//.addField("Premium since: ", premDate)
 			.addField("User ID: ", aut.id)
 			.addField("Currently: ", aut.presence.status)
 			.addField("Currently playing: ", gameName)
 			.addField("Currently streaming: ", stream)
+			.addField("Last Message: ", aut.lastMessage)
 		msg.channel.send({embed});
 	}
 }
