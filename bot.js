@@ -674,6 +674,7 @@ if(command === "userinfo"){
 
 	aut = msg.author;
 	cli = aut.client.user;
+	mem = msg.member
 	let gameName = "nothing";
 	let stream = "nowhere";
 	let prem = "Not a Premium User";
@@ -696,7 +697,7 @@ if(command === "userinfo"){
 		.setColor(color)
 		.setThumbnail(aut.avatarURL)
 		.setAuthor(aut.tag, aut.avatarURL)
-		.addField("Server Name: ", aut.discriminator)
+		.addField("Server Name: ", mem.nickname)
 		.addField("Discord Tag: ", aut.username)
 		.addField("Account Created: ", aut.createdAt)
 		.addField("Premium Staus: ", prem)
@@ -717,6 +718,7 @@ if(command === "getuserinfo"){
 	if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
 		aut = msg.mentions.users.first();
 		cli = aut.client.user;
+		mem = msg.guild.member(aut);
 		let gameName = "nothing";
 		let stream = "nowhere";
 		let prem = "Not a Premium User";
