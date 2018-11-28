@@ -662,7 +662,7 @@ if(command === "neko"){
 		}else{
 			choice = [Math.floor(Math.random() * 11)];
 		}
-		msg.channel.sendFile("app/folder2/file ("+ choice +")"+file);
+		msg.channel.sendFile("folder2/file ("+ choice +")"+file);
 	}
 };
 
