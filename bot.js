@@ -61,7 +61,8 @@ bot.on("message", (msg) => {
 
 if(command === "test"){
 	msg.delete();
-}
+};
+
 
 	if(msg.channel.type !== "dm"){ //server commands
 
@@ -179,7 +180,7 @@ if(command === "test"){
 				type = [".jpg", ".png"];
 				file = type[Math.floor(Math.random() * type.length)];
 				choice = [Math.floor(Math.random() * 3000)];
-				msg.mentions.users.first().sendFile("C:/Program Files (x86)/folder/file ("+ choice +").jpg");
+				msg.mentions.users.first().sendFile("/folder/file ("+ choice +").jpg");
 			}
 		};
 
@@ -637,7 +638,7 @@ if(command === "hentai"){
 		var type = [".jpg", ".png"];
 		let file = type[Math.floor(Math.random() * type.length)];
 		let choice = [Math.floor(Math.random() * 3200)];
-		msg.channel.sendFile("C:/Program Files (x86)/folder/file ("+ choice +").jpg");
+		msg.channel.sendFile("/folder/file ("+ choice +").jpg");
 	}
 };
 
@@ -660,7 +661,7 @@ if(command === "neko"){
 		}else{
 			choice = [Math.floor(Math.random() * 11)];
 		}
-		msg.channel.sendFile("C:/Program Files (x86)/folder2/file ("+ choice +")"+file);
+		msg.channel.sendFile("/folder2/file ("+ choice +")"+file);
 	}
 };
 
