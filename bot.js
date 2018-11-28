@@ -757,6 +757,34 @@ if(command === "getuserinfo"){
 	}
 }
 
+if(command === "ban"){
+	perms = msg.member.permissions;
+
+	if(msg.channel.type !== "dm"){
+		msg.delete();
+		if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
+		 	target = msg.guild.member(msg.mentions.users.first());
+			reason = argument.splice(0,1).join(" ");
+			target.ban(reason);
+			msg.channel.send(target + " banned for: " + reason);
+		}
+	}
+}
+
+if(command === "kick"){
+	perms = msg.member.permissions;
+
+	if(msg.channel.type !== "dm"){
+		msg.delete();
+		if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
+			target = msg.guild.member(msg.mentions.users.first());
+			reason = argument.splice(0,1).join(" ");
+			target.kick(reason);
+			msg.channel.send(target + " kicked for: " + reason);
+		}
+	}
+}
+
 });
 
 process.on('uncaughtException', function (err) {
