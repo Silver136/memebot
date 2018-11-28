@@ -741,7 +741,7 @@ if(command === "getuserinfo"){
 			.setColor(color)
 			.setThumbnail(aut.avatarURL)
 			.setAuthor(aut.tag, aut.avatarURL)
-			.addField("Server Name: ", aut.discriminator)
+			.addField("Server Name: ", mem.nickname)
 			.addField("Discord Tag: ", aut.username)
 			.addField("Account Created: ", aut.createdAt)
 			.addField("Premium Staus: ", prem)
