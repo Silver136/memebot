@@ -671,8 +671,9 @@ if(command === "smart"){
 
 if(command === "userinfo"){
 	if(msg.channel.type !== "dm"){ msg.delete(); }
+
 	aut = msg.author;
-	cli = aut.user.client;
+	cli = aut.client.user;
 	let gameName = "nothing";
 	let stream = "nowhere";
 	let prem = "Not a Premium User";
@@ -715,7 +716,7 @@ if(command === "getuserinfo"){
 
 	if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
 		aut = msg.mentions.users.first();
-		cli = aut.user.client;
+		cli = aut.client.user;
 		let gameName = "nothing";
 		let stream = "nowhere";
 		let prem = "Not a Premium User";
