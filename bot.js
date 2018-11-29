@@ -59,14 +59,20 @@ bot.on("message", (msg) => {
   //and argument is an array of everything written after the initial command
   //seperated by spaces.
 
-if(command === "test"){
-	msg.delete();
+
+				//////////////////Bot Test Server Area/////////////////////
+if(msg.guild.id === "517762119131987988"){
+	if(command === "test"){
+		if(msg.channel.type !== "dm"){ msg.delete(); }
+	};
 };
 
 
-	if(msg.channel.type !== "dm"){ //server commands
+//////////////////////////////////SERVER ONLY COMMANDS/////////////////////////////////////////
+	if(msg.channel.type !== "dm"){
 
-		if(msg.guild.id === "465358602216144916"){//rabbits specific Commands
+/////////////////////////Rabbits only commands//////////////////////////
+		if(msg.guild.id === "465358602216144916"){
 
 			let remoteHolders = msg.guild.roles.find("name", "Remote Holders");
 			let camp = msg.guild.roles.find("name", "The Camp");
@@ -118,7 +124,9 @@ if(command === "test"){
 					if(msg.channel.type !== "dm"){ msg.delete(); }
 				}
 			};
-		}//end of rabbits commands
+		}
+		/////////////////END OF RABBITS COMMANDS////////////////////////////////
+
 
 		if(command === "del"){
 			if(msg.channel.type !== "dm"){ msg.delete(); }
@@ -218,7 +226,9 @@ if(command === "test"){
 				msg.channel.send("You have no perms faggot!")
 			}
 		};
-	}; //rabb.its command pool
+	};
+	//////////////////////////////END OF SERVER ONLY COMMANDS///////////////////////////////////
+
 
 
 	if(command === "help"){
@@ -699,12 +709,13 @@ if(command === "userinfo"){
 		.setColor(color)
 		.setThumbnail(aut.avatarURL)
 		.setAuthor(aut.tag, aut.avatarURL)
-		.addField("Email: ", cli.email)
+//		.addField("Email: ", cli.email)
 		.addField("Server Name: ", mem.nickname)
 		.addField("Server Standing: ", mem.highestRole.name)
 		.addField("Discord Tag: ", aut.username)
 		.addField("Account Created: ", aut.createdAt)
 		.addField("Premium Staus: ", prem)
+		.addField("Verified: ", cli.verified)
 		//.addField("Premium since: ", premDate)
 		.addField("User ID: ", aut.id)
 		.addField("Currently: ", aut.presence.status)
@@ -748,12 +759,13 @@ if(command === "getuserinfo"){
 			.setColor(color)
 			.setThumbnail(aut.avatarURL)
 			.setAuthor(aut.tag, aut.avatarURL)
-			.addField("Email: ", cli.email)
+//			.addField("Email: ", cli.email)
 			.addField("Server Name: ", mem.nickname)
 			.addField("Server Standing: ", mem.highestRole.name)
 			.addField("Discord Tag: ", aut.username)
 			.addField("Account Created: ", aut.createdAt)
 			.addField("Premium Staus: ", prem)
+			.addField("Verified: ", cli.verified)
 			//.addField("Premium since: ", premDate)
 			.addField("User ID: ", aut.id)
 			.addField("Currently: ", aut.presence.status)
