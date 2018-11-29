@@ -60,13 +60,6 @@ bot.on("message", (msg) => {
   //seperated by spaces.
 
 
-				//////////////////Bot Test Server Area/////////////////////
-if(msg.guild.id === "517762119131987988"){
-	if(command === "test"){
-		if(msg.channel.type !== "dm"){ msg.delete(); }
-	};
-};
-
 
 //////////////////////////////////SERVER ONLY COMMANDS/////////////////////////////////////////
 	if(msg.channel.type !== "dm"){
