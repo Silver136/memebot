@@ -219,6 +219,28 @@ bot.on("message", (msg) => {
 				msg.channel.send("You have no perms faggot!")
 			}
 		};
+
+		if(command === "vote"){
+			msg.delete();
+
+			perms = msg.member.permissions;
+
+			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
+				const filter = (reaction) => reaction.emoji.name === '👍'
+				votes = 0;
+
+				const embed = new Discord.RichEmbed()
+					.setTitle("Vote Called!")
+					.setDescription(argument.join(" "))
+					.setFooter("React 👍 to vote yes.")
+
+					msg.channel.send({embed})
+						.then(() => collection = msg.guild.member("486569856070844436").lastMessage.awaitReactions(filter, { time: 10000 }))
+							.then(collected => votes = collected.size)
+								.then(() => msg.channel.send("Voting complete!"))
+									.then(() => { if(votes >= msg.guild.memberCount/3){ msg.channel.send("Vote Passed!"); }else{ msg.channel.send("Vote did not pass"); } });
+			}
+		}
 	};
 	//////////////////////////////END OF SERVER ONLY COMMANDS///////////////////////////////////
 
@@ -737,7 +759,6 @@ if(command === "getuserinfo"){
 		if(aut.presence.game !== null){
 			gameName = aut.presence.game.name;
 //			gameTime = aut.presence.game.timestamps;
-			console.log(aut.presence.game.timestamps);
 			if(aut.presence.game.type === 1){
 				stream = aut.presence.game.url;
 			}
@@ -798,6 +819,7 @@ if(command === "kick"){
 		}
 	}
 }
+
 
 });
 
