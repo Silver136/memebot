@@ -678,13 +678,13 @@ if(command === "userinfo"){
 	cli = aut.client.user;
 	mem = msg.member
 	let gameName = "nothing";
+//		let gameTime = "never";
 	let stream = "nowhere";
 	let prem = "Not a Premium User";
 	//let premDate = "Never";
-
 	if(aut.presence.game !== null){
 		gameName = aut.presence.game.name;
-
+//			gameTime = aut.presence.game.timestamps;
 		if(aut.presence.game.type === 1){
 			stream = aut.presence.game.url;
 		}
@@ -699,7 +699,9 @@ if(command === "userinfo"){
 		.setColor(color)
 		.setThumbnail(aut.avatarURL)
 		.setAuthor(aut.tag, aut.avatarURL)
+		.addField("Email: ", cli.email)
 		.addField("Server Name: ", mem.nickname)
+		.addField("Server Standing: ", mem.highestRole.name)
 		.addField("Discord Tag: ", aut.username)
 		.addField("Account Created: ", aut.createdAt)
 		.addField("Premium Staus: ", prem)
@@ -707,8 +709,10 @@ if(command === "userinfo"){
 		.addField("User ID: ", aut.id)
 		.addField("Currently: ", aut.presence.status)
 		.addField("Currently playing: ", gameName)
+//			.addField("Playing Since: ", gameTime)
 		.addField("Currently streaming: ", stream)
 		.addField("Last Message: ", aut.lastMessage)
+		.setFooter("Data Retrieved at: " + msg.createdAt)
 	msg.channel.send({embed});
 }
 
@@ -722,17 +726,18 @@ if(command === "getuserinfo"){
 		cli = aut.client.user;
 		mem = msg.guild.member(aut);
 		let gameName = "nothing";
+//		let gameTime = "never";
 		let stream = "nowhere";
 		let prem = "Not a Premium User";
 		//let premDate = "Never";
 		if(aut.presence.game !== null){
 			gameName = aut.presence.game.name;
-
+//			gameTime = aut.presence.game.timestamps;
+			console.log(aut.presence.game.timestamps);
 			if(aut.presence.game.type === 1){
 				stream = aut.presence.game.url;
 			}
 		}
-
 
 		if(cli.premium){
 			prem = "Premium User";
@@ -743,7 +748,9 @@ if(command === "getuserinfo"){
 			.setColor(color)
 			.setThumbnail(aut.avatarURL)
 			.setAuthor(aut.tag, aut.avatarURL)
+			.addField("Email: ", cli.email)
 			.addField("Server Name: ", mem.nickname)
+			.addField("Server Standing: ", mem.highestRole.name)
 			.addField("Discord Tag: ", aut.username)
 			.addField("Account Created: ", aut.createdAt)
 			.addField("Premium Staus: ", prem)
@@ -751,8 +758,10 @@ if(command === "getuserinfo"){
 			.addField("User ID: ", aut.id)
 			.addField("Currently: ", aut.presence.status)
 			.addField("Currently playing: ", gameName)
+//			.addField("Playing Since: ", gameTime)
 			.addField("Currently streaming: ", stream)
 			.addField("Last Message: ", aut.lastMessage)
+			.setFooter("Data Retrieved at: " + msg.createdAt)
 		msg.channel.send({embed});
 	}
 }
