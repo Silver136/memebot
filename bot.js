@@ -737,7 +737,6 @@ if(command === "getuserinfo"){
 		if(aut.presence.game !== null){
 			gameName = aut.presence.game.name;
 //			gameTime = aut.presence.game.timestamps;
-			console.log(aut.presence.game.timestamps);
 			if(aut.presence.game.type === 1){
 				stream = aut.presence.game.url;
 			}
