@@ -235,7 +235,7 @@ bot.on("message", (msg) => {
 					.setFooter("React 👍 to vote yes.")
 
 					msg.channel.send({embed})
-						.then(() => collection = msg.guild.member("486569856070844436").lastMessage.awaitReactions(filter, { time: 10000 }))
+						.then(() => collection = msg.guild.member("486569856070844436").lastMessage.awaitReactions(filter, { time: 30000 }))
 							.then(collected => votes = collected.size)
 								.then(() => msg.channel.send("Voting complete!"))
 									.then(() => { if(votes >= msg.guild.memberCount/3){ msg.channel.send("Vote Passed!"); }else{ msg.channel.send("Vote did not pass"); } });
