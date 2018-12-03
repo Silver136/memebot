@@ -142,9 +142,9 @@ bot.on("message", (msg) => {
 			perms = msg.member.permissions;
 
 			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
-				mention = msg.mentions.users
-				rec = argument.indexOf(mention)
-				argument.splice(mention, 1)
+				mention = msg.mentions.users;
+				rec = argument.indexOf(mention);
+				argument = argument.splice(rec, 1);
 				let message = argument.join(" ");
 				msg.mentions.users.first().send(""+message+"");
 				if(msg.channel.type !== "dm"){ msg.delete(); }
