@@ -833,10 +833,10 @@ if(command === "ping"){
 process.on('uncaughtException', function (err) {
   console.log('Caught exception: ' + err);
 	console.log("Restarting. . .")
-	bot.destroy().then(() => bot.login(config.token))
+	bot.destroy().then(() => bot.login())
 });
 //throws errors in the console
 
 
 
-bot.login(config.token);
+bot.login();
