@@ -581,7 +581,7 @@ if(command === "faggot") {
 	if(msg.channel.type !== "dm"){ msg.delete(); }
 	const embed = new Discord.RichEmbed()
 		.setColor(color)
-		.setImage()
+		.setImage("https://cdn.discordapp.com/attachments/517762119131987991/519248824934596608/faggot.jpg");
 	msg.channel.send({embed})
 };
 
