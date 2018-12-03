@@ -235,10 +235,10 @@ bot.on("message", (msg) => {
 					.setFooter("React 👍 to vote yes.")
 
 					msg.channel.send({embed})
-						.then(() => collection = msg.guild.member("486569856070844436").lastMessage.awaitReactions(filter, { time: 30000 }))
-							.then(collected => votes = collected.size)
-								.then(() => msg.channel.send("Voting complete!"))
-									.then(() => { if(votes >= msg.guild.memberCount/3){ msg.channel.send("Vote Passed!"); }else{ msg.channel.send("Vote did not pass"); } });
+					msg.guild.member('486569856070844436').lastMessage.react('👍')
+						.then(() => collection = msg.guild.member("486569856070844436").lastMessage.awaitReactions(filter, { time: 120000 }))
+							.then(collected => votes = collected.size - 1)
+								.then(() => { if(votes >= msg.guild.memberCount/2){ msg.channel.send("Vote Passed!"); }else{ msg.channel.send("Vote did not pass"); } });
 			}
 		}
 	};
@@ -247,7 +247,7 @@ bot.on("message", (msg) => {
 
 
 	if(command === "help"){
-		regList = ["greentext: posts a random greentext","userinfo: retrieves info about you","*getuserinfo: retrieves info about a person you @","*name: allows admins to quickly change usernames with an @","*purge: completely clears all messages loaded on a page","*clear: deletes a set number of messages defined my admin","*pm: sends a pm to whomever the admin @s","*del: deletes messages of @'d user from a set number of retrieved messages", "8ball", "rev: reverses message", "cry", "facepalm","fuck","choose: chooses a ranbdom selection from words in message","kmf: 'kill, marry, fuck'","doggo","rage","lenny","nazi","4FCG","autism","ree","owo","what","nigga","spicy","*power: sends a tts message","brits","friendly","o","deusvult","pooh","f","normie","rip","lmao","kek","kappa","noice","faggot","ayy","shook","eyebrows","dab","weeb","bait","joke","#neko: posts a random neko image"]
+		regList = ["greentext: posts a random greentext","userinfo: retrieves info about you","*vote: calls a 30 second vote and determines outcome based on vote count","*getuserinfo: retrieves info about a person you @","*name: allows admins to quickly change usernames with an @","*purge: completely clears all messages loaded on a page","*clear: deletes a set number of messages defined my admin","*pm: sends a pm to whomever the admin @s","*del: deletes messages of @'d user from a set number of retrieved messages", "8ball", "rev: reverses message", "cry", "facepalm","fuck","choose: chooses a ranbdom selection from words in message","kmf: 'kill, marry, fuck'","doggo","rage","lenny","nazi","4FCG","autism","ree","owo","what","nigga","spicy","*power: sends a tts message","brits","friendly","o","deusvult","pooh","f","normie","rip","lmao","kek","kappa","noice","faggot","ayy","shook","eyebrows","dab","weeb","bait","joke","#neko: posts a random neko image"]
 		rabbitsList = ["fabio","unfabio","camp","uncamp"]
 		const embed = new Discord.RichEmbed()
 			.setAuthor('Command List', 'https://3c2ba678857e073c9506-9b92ffc51ccdc874f7e956dfcfbdbfba.ssl.cf5.rackcdn.com/meme-bot.png')
@@ -441,7 +441,7 @@ if(command === "nigga") {
 		if(msg.channel.type !== "dm"){ msg.delete(); }
 		const embed = new Discord.RichEmbed()
 			.setColor(color)
-			.setImage("https://cdn.discordapp.com/attachments/491320570558808074/517098097394974740/shit.jpg")
+			.setImage("https://cdn.discordapp.com/attachments/517762119131987991/519200877479723029/shit.jpg");
 		msg.channel.send({embed})
 	};
 
@@ -552,14 +552,14 @@ if(command === "kek") {
  	if(msg.channel.type !== "dm"){ msg.delete(); }
 	const embed = new Discord.RichEmbed()
 		.setColor(color)
-		.setImage("https://cdn.discordapp.com/attachments/491320570558808074/517098264139530252/kek.jpg")
+		.setImage("https://cdn.discordapp.com/attachments/517762119131987991/519200873801580545/kek.jpg")
 	msg.channel.send({embed})
 };
 
 if(command === "kappa") {
 	const embed = new Discord.RichEmbed()
 		.setImage("https://images-ext-1.discordapp.net/external/anxQk5aNWYNUjdRVJI6lR3wNc0CkFTLUIZW7g6xezIg/https/cdn.discordapp.com/attachments/279269979000668160/289481362438750209/kappa.png?width=100&height=100")
-		.setColor('#' + Math.random().toString(16).slice(2, 8).toUpperCase())
+		.setColor(color)
 	msg.channel.send({embed});
 	if(msg.channel.type !== "dm"){ msg.delete(); }
 };
@@ -581,7 +581,7 @@ if(command === "faggot") {
 	if(msg.channel.type !== "dm"){ msg.delete(); }
 	const embed = new Discord.RichEmbed()
 		.setColor(color)
-		.setImage("https://cdn.discordapp.com/attachments/491320570558808074/517098522890207234/faggot.jpg")
+		.setImage()
 	msg.channel.send({embed})
 };
 
@@ -818,6 +818,13 @@ if(command === "kick"){
 			msg.channel.send(target + " kicked for: " + reason);
 		}
 	}
+}
+
+if(command === "ping"){
+	if(msg.channel.type !== "dm"){ msg.delete(); }
+
+	msg.channel.send("Pinging...")
+		.then(() => msg.guild.member("486569856070844436").lastMessage.edit("Took " + bot.ping + "ms"));
 }
 
 
