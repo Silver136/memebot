@@ -235,8 +235,8 @@ bot.on("message", (msg) => {
 					.setFooter("React 👍 to vote yes.")
 
 					msg.channel.send({embed})
-					msg.guild.member('486569856070844436').lastMessage.react('👍')
-						.then(() => collection = msg.guild.member("486569856070844436").lastMessage.awaitReactions(filter, { time: 120000 }))
+					msg.guild.member('519294665502228491').lastMessage.react('👍')
+						.then(() => collection = msg.guild.member("519294665502228491").lastMessage.awaitReactions(filter, { time: 120000 }))
 							.then(collected => votes = collected.size - 1)
 								.then(() => { if(votes >= msg.guild.memberCount/2){ msg.channel.send("Vote Passed!"); }else{ msg.channel.send("Vote did not pass"); } });
 			}
@@ -699,19 +699,19 @@ if(command === "smart"){
 if(command === "userinfo"){
 	if(msg.channel.type !== "dm"){ msg.delete(); }
 
-	aut = msg.author;
-	cli = aut.client.user;
+	user = msg.author;
+	cli = user.client.user;
 	mem = msg.member
 	let gameName = "nothing";
 	let gameTime = "never";
 	let stream = "nowhere";
 	let prem = "Not a Premium User";
 	//let premDate = "Never";
-	if(aut.presence.game !== null){
-		gameName = aut.presence.game.name;
-		gameTime = aut.presence.game.timestamps.start;
-		if(aut.presence.game.type === 1){
-			stream = aut.presence.game.url;
+	if(user.presence.game !== null){
+		gameName = user.presence.game.name;
+		gameTime = user.presence.game.timestamps.start;
+		if(user.presence.game.type === 1){
+			stream = user.presence.game.url;
 		}
 	}
 
@@ -722,22 +722,22 @@ if(command === "userinfo"){
 	const embed = new Discord.RichEmbed()
 		.setTitle("User Information")
 		.setColor(color)
-		.setThumbnail(aut.avatarURL)
-		.setAuthor(aut.tag, aut.avatarURL)
+		.setThumbnail(user.avatarURL)
+		.setAuthor(user.tag, user.avatarURL)
 //		.addField("Email: ", cli.email)
 		.addField("Server Name: ", mem.nickname)
 		.addField("Server Standing: ", mem.highestRole.name)
-		.addField("Discord Tag: ", aut.username)
-		.addField("Account Created: ", aut.createdAt)
+		.addField("Discord Tag: ", user.username)
+		.addField("Account Created: ", user.createdAt)
 		.addField("Premium Staus: ", prem)
 		.addField("Verified: ", cli.verified)
 		//.addField("Premium since: ", premDate)
-		.addField("User ID: ", aut.id)
-		.addField("Currently: ", aut.presence.status)
+		.addField("User ID: ", user.id)
+		.addField("Currently: ", user.presence.status)
 		.addField("Currently playing: ", gameName)
 		.addField("Playing Since: ", gameTime)
 		.addField("Currently streaming: ", stream)
-		.addField("Last Message: ", aut.lastMessage)
+		.addField("Last Message: ", user.lastMessage)
 		.setFooter("Data Retrieved at: " + msg.createdAt)
 	msg.channel.send({embed});
 }
@@ -748,19 +748,19 @@ if(command === "getuserinfo"){
 	perms = msg.member.permissions;
 
 	if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
-		aut = msg.mentions.users.first();
-		cli = aut.client.user;
-		mem = msg.guild.member(aut);
+		user = msg.mentions.users.first();
+		cli = user.client.user;
+		mem = msg.guild.member(user);
 		let gameName = "nothing";
-//		let gameTime = "never";
+		let gameTime = "never";
 		let stream = "nowhere";
 		let prem = "Not a Premium User";
 		//let premDate = "Never";
-		if(aut.presence.game !== null){
-			gameName = aut.presence.game.name;
-//			gameTime = aut.presence.game.timestamps;
-			if(aut.presence.game.type === 1){
-				stream = aut.presence.game.url;
+		if(user.presence.game !== null){
+			gameName = user.presence.game.name;
+			gameTime = user.presence.game.timestamps.start;
+			if(user.presence.game.type === 1){
+				stream = user.presence.game.url;
 			}
 		}
 
@@ -771,22 +771,22 @@ if(command === "getuserinfo"){
 		const embed = new Discord.RichEmbed()
 			.setTitle("User Information")
 			.setColor(color)
-			.setThumbnail(aut.avatarURL)
-			.setAuthor(aut.tag, aut.avatarURL)
+			.setThumbnail(user.avatarURL)
+			.setAuthor(user.tag, user.avatarURL)
 //			.addField("Email: ", cli.email)
 			.addField("Server Name: ", mem.nickname)
 			.addField("Server Standing: ", mem.highestRole.name)
-			.addField("Discord Tag: ", aut.username)
-			.addField("Account Created: ", aut.createdAt)
+			.addField("Discord Tag: ", user.username)
+			.addField("Account Created: ", user.createdAt)
 			.addField("Premium Staus: ", prem)
 			.addField("Verified: ", cli.verified)
 			//.addField("Premium since: ", premDate)
-			.addField("User ID: ", aut.id)
-			.addField("Currently: ", aut.presence.status)
+			.addField("User ID: ", user.id)
+			.addField("Currently: ", user.presence.status)
 			.addField("Currently playing: ", gameName)
-//			.addField("Playing Since: ", gameTime)
+			.addField("Playing Since: ", gameTime)
 			.addField("Currently streaming: ", stream)
-			.addField("Last Message: ", aut.lastMessage)
+			.addField("Last Message: ", user.lastMessage)
 			.setFooter("Data Retrieved at: " + msg.createdAt)
 		msg.channel.send({embed});
 	}
@@ -824,7 +824,7 @@ if(command === "ping"){
 	if(msg.channel.type !== "dm"){ msg.delete(); }
 
 	msg.channel.send("Pinging...")
-		.then(() => msg.guild.member("486569856070844436").lastMessage.edit("Took " + bot.ping + "ms"));
+		.then(() => msg.guild.member("519294665502228491").lastMessage.edit("Took " + bot.ping + "ms"));
 }
 
 
