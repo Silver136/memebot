@@ -758,7 +758,7 @@ if(command === "getuserinfo"){
 		//let premDate = "Never";
 		if(aut.presence.game !== null){
 			gameName = aut.presence.game.name;
-//			gameTime = aut.presence.game.timestamps;
+			gameTime = aut.presence.game.timestamps;
 			if(aut.presence.game.type === 1){
 				stream = aut.presence.game.url;
 			}
@@ -784,7 +784,7 @@ if(command === "getuserinfo"){
 			.addField("User ID: ", aut.id)
 			.addField("Currently: ", aut.presence.status)
 			.addField("Currently playing: ", gameName)
-//			.addField("Playing Since: ", gameTime)
+			.addField("Playing Since: ", gameTime)
 			.addField("Currently streaming: ", stream)
 			.addField("Last Message: ", aut.lastMessage)
 			.setFooter("Data Retrieved at: " + msg.createdAt)
