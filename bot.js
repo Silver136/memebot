@@ -700,12 +700,12 @@ if(command === "userinfo"){
 	if(msg.channel.type !== "dm"){ msg.delete(); }
 
 	user = msg.author;
-	cli = user.client.user;
-	mem = msg.member
+//	cli = user.client.user;
+	mem = msg.member;
 	let gameName = "nothing";
 	let gameTime = "never";
 	let stream = "nowhere";
-	let prem = "Not a Premium User";
+//	let prem = "Not a Premium User";
 	//let premDate = "Never";
 	if(user.presence.game !== null){
 		gameName = user.presence.game.name;
@@ -715,9 +715,9 @@ if(command === "userinfo"){
 		}
 	}
 
-	if(cli.premium){
+/*	if(cli.premium){
 		prem = "Premium User";
-	}
+	}*/
 
 	const embed = new Discord.RichEmbed()
 		.setTitle("User Information")
@@ -727,10 +727,11 @@ if(command === "userinfo"){
 //		.addField("Email: ", cli.email)
 		.addField("Server Name: ", mem.nickname)
 		.addField("Server Standing: ", mem.highestRole.name)
+		.addField("Member Since: ", mem.joinedAt)
 		.addField("Discord Tag: ", user.username)
 		.addField("Account Created: ", user.createdAt)
-		.addField("Premium Staus: ", prem)
-		.addField("Verified: ", cli.verified)
+//		.addField("Premium Staus: ", prem)
+//		.addField("Verified: ", cli.verified)
 		//.addField("Premium since: ", premDate)
 		.addField("User ID: ", user.id)
 		.addField("Currently: ", user.presence.status)
@@ -749,12 +750,12 @@ if(command === "getuserinfo"){
 
 	if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
 		user = msg.mentions.users.first();
-		cli = user.client.user;
+//		cli = user.client.user;
 		mem = msg.guild.member(user);
 		let gameName = "nothing";
 		let gameTime = "never";
 		let stream = "nowhere";
-		let prem = "Not a Premium User";
+//		let prem = "Not a Premium User";
 		//let premDate = "Never";
 		if(user.presence.game !== null){
 			gameName = user.presence.game.name;
@@ -764,9 +765,9 @@ if(command === "getuserinfo"){
 			}
 		}
 
-		if(cli.premium){
+/*		if(cli.premium){
 			prem = "Premium User";
-		}
+		}*/
 
 		const embed = new Discord.RichEmbed()
 			.setTitle("User Information")
@@ -776,10 +777,11 @@ if(command === "getuserinfo"){
 //			.addField("Email: ", cli.email)
 			.addField("Server Name: ", mem.nickname)
 			.addField("Server Standing: ", mem.highestRole.name)
+			.addField("Member Since: ", mem.joinedAt)
 			.addField("Discord Tag: ", user.username)
 			.addField("Account Created: ", user.createdAt)
-			.addField("Premium Staus: ", prem)
-			.addField("Verified: ", cli.verified)
+//			.addField("Premium Staus: ", prem)
+//			.addField("Verified: ", cli.verified)
 			//.addField("Premium since: ", premDate)
 			.addField("User ID: ", user.id)
 			.addField("Currently: ", user.presence.status)
