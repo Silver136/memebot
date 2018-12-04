@@ -309,14 +309,14 @@ bot.on("message", (msg) => {
 				votes = 0;
 
 				const embed = new Discord.RichEmbed()
-					.setTitle("@everyone Vote Called!")
-					.setDescription(argument.join(" "))
+					.setTitle("Vote Called!")
+					.setDescription("@everyone " + argument.join(" "))
 					.setFooter("React 👍 to vote yes.")
 
 					msg.channel.send({embed})
 						.then(() => msg.guild.member('519294665502228491').lastMessage.react('👍'))
 							.then(() => collection = msg.guild.member("519294665502228491").lastMessage.awaitReactions(filter, { time: 120000 }))
-								.then(collected => votes = collected.size - 1)
+								.then(collected => votes = collected.size)
 									.then(() => { if(votes >= msg.guild.memberCount/2){ msg.channel.send("Vote Passed!"); }else{ msg.channel.send("Vote did not pass."); } });
 			}
 		}
