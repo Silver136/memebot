@@ -120,6 +120,57 @@ bot.on("message", (msg) => {
 		}
 		/////////////////END OF RABBITS COMMANDS////////////////////////////////
 
+		if(command === "getuserinfo"){
+			if(msg.channel.type !== "dm"){ msg.delete(); }
+
+			perms = msg.member.permissions;
+
+			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
+				user = msg.mentions.users.first();
+		//		cli = user.client.user;
+				mem = msg.guild.member(user);
+				let gameName = "nothing";
+				let gameTime = "never";
+				let stream = "nowhere";
+		//		let prem = "Not a Premium User";
+				//let premDate = "Never";
+				if(user.presence.game !== null){
+					gameName = user.presence.game.name;
+					gameTime = user.presence.game.timestamps.start;
+					if(user.presence.game.type === 1){
+						stream = user.presence.game.url;
+					}
+				}
+
+		/*		if(cli.premium){
+					prem = "Premium User";
+				}*/
+
+				const embed = new Discord.RichEmbed()
+					.setTitle("User Information")
+					.setColor(color)
+					.setDescription("Server: " + msg.guild.name)
+					.setThumbnail(user.avatarURL)
+					.setAuthor(user.tag, user.avatarURL)
+		//			.addField("Email: ", cli.email)
+					.addField("Server Name: ", mem.nickname)
+					.addField("Server Standing: ", mem.highestRole.name)
+					.addField("Member Since: ", mem.joinedAt)
+					.addField("Discord Tag: ", user.username)
+					.addField("Account Created: ", user.createdAt)
+		//			.addField("Premium Staus: ", prem)
+		//			.addField("Verified: ", cli.verified)
+					//.addField("Premium since: ", premDate)
+					.addField("User ID: ", user.id)
+					.addField("Currently: ", user.presence.status)
+					.addField("Currently playing: ", gameName)
+					.addField("Playing Since: ", gameTime)
+					.addField("Currently streaming: ", stream)
+					.addField("Last Message: ", user.lastMessage)
+					.setFooter("Data Retrieved at: " + msg.createdAt)
+				msg.channel.send({embed});
+			}
+		}
 
 		if(command === "del"){
 			if(msg.channel.type !== "dm"){ msg.delete(); }
@@ -220,6 +271,34 @@ bot.on("message", (msg) => {
 			}
 		};
 
+		if(command === "ban"){
+			perms = msg.member.permissions;
+
+			if(msg.channel.type !== "dm"){
+				msg.delete();
+				if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
+				 	target = msg.guild.member(msg.mentions.users.first());
+					reason = argument.splice(1,argument.length).join(" ");
+					target.ban(reason);
+					msg.channel.send(target + " banned for: " + reason);
+				}
+			}
+		}
+
+		if(command === "kick"){
+			perms = msg.member.permissions;
+
+			if(msg.channel.type !== "dm"){
+				msg.delete();
+				if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
+					target = msg.guild.member(msg.mentions.users.first());
+					reason = argument.splice(1,argument.length).join(" ");
+					target.kick(reason);
+					msg.channel.send(target + " kicked for: " + reason);
+				}
+			}
+		}
+
 		if(command === "vote"){
 			msg.delete();
 
@@ -230,7 +309,7 @@ bot.on("message", (msg) => {
 				votes = 0;
 
 				const embed = new Discord.RichEmbed()
-					.setTitle("Vote Called!")
+					.setTitle("@everyone Vote Called!")
 					.setDescription(argument.join(" "))
 					.setFooter("React 👍 to vote yes.")
 
@@ -238,7 +317,7 @@ bot.on("message", (msg) => {
 					msg.guild.member('519294665502228491').lastMessage.react('👍')
 						.then(() => collection = msg.guild.member("519294665502228491").lastMessage.awaitReactions(filter, { time: 120000 }))
 							.then(collected => votes = collected.size - 1)
-								.then(() => { if(votes >= msg.guild.memberCount/2){ msg.channel.send("Vote Passed!"); }else{ msg.channel.send("Vote did not pass"); } });
+								.then(() => { if(votes >= msg.guild.memberCount/2){ msg.channel.send("Vote Passed!"); }else{ msg.channel.send("Vote did not pass."); } });
 			}
 		}
 	};
@@ -742,86 +821,6 @@ if(command === "userinfo"){
 		.addField("Last Message: ", user.lastMessage)
 		.setFooter("Data Retrieved at: " + msg.createdAt)
 	msg.channel.send({embed});
-}
-
-if(command === "getuserinfo"){
-	if(msg.channel.type !== "dm"){ msg.delete(); }
-
-	perms = msg.member.permissions;
-
-	if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
-		user = msg.mentions.users.first();
-//		cli = user.client.user;
-		mem = msg.guild.member(user);
-		let gameName = "nothing";
-		let gameTime = "never";
-		let stream = "nowhere";
-//		let prem = "Not a Premium User";
-		//let premDate = "Never";
-		if(user.presence.game !== null){
-			gameName = user.presence.game.name;
-			gameTime = user.presence.game.timestamps.start;
-			if(user.presence.game.type === 1){
-				stream = user.presence.game.url;
-			}
-		}
-
-/*		if(cli.premium){
-			prem = "Premium User";
-		}*/
-
-		const embed = new Discord.RichEmbed()
-			.setTitle("User Information")
-			.setColor(color)
-			.setDescription("Server: " + msg.guild.name)
-			.setThumbnail(user.avatarURL)
-			.setAuthor(user.tag, user.avatarURL)
-//			.addField("Email: ", cli.email)
-			.addField("Server Name: ", mem.nickname)
-			.addField("Server Standing: ", mem.highestRole.name)
-			.addField("Member Since: ", mem.joinedAt)
-			.addField("Discord Tag: ", user.username)
-			.addField("Account Created: ", user.createdAt)
-//			.addField("Premium Staus: ", prem)
-//			.addField("Verified: ", cli.verified)
-			//.addField("Premium since: ", premDate)
-			.addField("User ID: ", user.id)
-			.addField("Currently: ", user.presence.status)
-			.addField("Currently playing: ", gameName)
-			.addField("Playing Since: ", gameTime)
-			.addField("Currently streaming: ", stream)
-			.addField("Last Message: ", user.lastMessage)
-			.setFooter("Data Retrieved at: " + msg.createdAt)
-		msg.channel.send({embed});
-	}
-}
-
-if(command === "ban"){
-	perms = msg.member.permissions;
-
-	if(msg.channel.type !== "dm"){
-		msg.delete();
-		if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
-		 	target = msg.guild.member(msg.mentions.users.first());
-			reason = argument.splice(1,argument.length).join(" ");
-			target.ban(reason);
-			msg.channel.send(target + " banned for: " + reason);
-		}
-	}
-}
-
-if(command === "kick"){
-	perms = msg.member.permissions;
-
-	if(msg.channel.type !== "dm"){
-		msg.delete();
-		if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
-			target = msg.guild.member(msg.mentions.users.first());
-			reason = argument.splice(1,argument.length).join(" ");
-			target.kick(reason);
-			msg.channel.send(target + " kicked for: " + reason);
-		}
-	}
 }
 
 if(command === "ping"){
