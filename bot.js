@@ -307,13 +307,14 @@ bot.on("message", (msg) => {
 			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
 				const filter = (reaction) => reaction.emoji.name === '👍'
 				votes = 0;
+				msg.channel.send("@everyone");
 
 				const embed = new Discord.RichEmbed()
 					.setTitle("Vote Called!")
-					.setDescription("@everyone " + argument.join(" "))
+					.setDescription(argument.join(" "))
 					.setFooter("React 👍 to vote yes.")
 
-					msg.channel.send({embed})
+					msg.channel.send({embed});
 						.then(() => msg.guild.member('519294665502228491').lastMessage.react('👍'))
 							.then(() => collection = msg.guild.member("519294665502228491").lastMessage.awaitReactions(filter, { time: 120000 }))
 								.then(collected => votes = collected.size)
@@ -323,10 +324,20 @@ bot.on("message", (msg) => {
 	};
 	//////////////////////////////END OF SERVER ONLY COMMANDS///////////////////////////////////
 
-
+	if(command === "bully"){
+		if(msg.channel.type !== "dm"){ msg.delete(); }
+		const embed1 = new Discord.RichEmbed()
+			.setColor(color)
+			.setImage("http://s4.storage.akamai.coub.com/get/b67/p/coub/simple/cw_timeline_pic/5f34f32e476/1f9568d5aacf7796e3cb1/big_1461555316_image.jpg")
+		msg.channel.send({embed: embed1});
+		const embed2 = new Discord.RichEmbed()
+			.setColor(color)
+			.setImage("https://i.imgur.com/3IF6IBX.gif")
+		msg.channel.send({embed: embed2})
+	};
 
 	if(command === "help"){
-		regList = ["greentext: posts a random greentext","userinfo: retrieves info about you","*vote: calls a 30 second vote and determines outcome based on vote count","*getuserinfo: retrieves info about a person you @","*name: allows admins to quickly change usernames with an @","*purge: completely clears all messages loaded on a page","*clear: deletes a set number of messages defined my admin","*pm: sends a pm to whomever the admin @s","*del: deletes messages of @'d user from a set number of retrieved messages", "8ball", "rev: reverses message", "cry", "facepalm","fuck","choose: chooses a ranbdom selection from words in message","kmf: 'kill, marry, fuck'","doggo","rage","lenny","nazi","4FCG","autism","ree","owo","what","nigga","spicy","*power: sends a tts message","brits","friendly","o","deusvult","pooh","f","normie","rip","lmao","kek","kappa","noice","faggot","ayy","shook","eyebrows","dab","weeb","bait","joke","#neko: posts a random neko image"]
+		regList = ["greentext: posts a random greentext","*kick: kicks @'d user. Message after @ appears as kick reason","*ban: bans @'d user, Message after @ appears as ban reason.", "userinfo: retrieves info about you","*vote: calls a 30 second vote and determines outcome based on vote count","*getuserinfo: retrieves info about a person you @","*name: allows admins to quickly change usernames with an @","*purge: completely clears all messages loaded on a page","*clear: deletes a set number of messages defined my admin","*pm: sends a pm to whomever the admin @s","*del: deletes messages of @'d user from a set number of retrieved messages", "8ball", "rev: reverses message", "cry", "facepalm","fuck","choose: chooses a ranbdom selection from words in message","kmf: 'kill, marry, fuck'","doggo","rage","lenny","nazi","4FCG","autism","ree","owo","what","nigga","spicy","*power: sends a tts message","brits","friendly","o","deusvult","pooh","f","normie","rip","lmao","kek","kappa","noice","faggot","ayy","shook","eyebrows","dab","weeb","bait","joke","#neko: posts a random neko image"]
 		rabbitsList = ["fabio","unfabio","camp","uncamp"]
 		const embed = new Discord.RichEmbed()
 			.setAuthor('Command List', 'https://3c2ba678857e073c9506-9b92ffc51ccdc874f7e956dfcfbdbfba.ssl.cf5.rackcdn.com/meme-bot.png')
