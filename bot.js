@@ -314,7 +314,7 @@ bot.on("message", (msg) => {
 					.setDescription(argument.join(" "))
 					.setFooter("React 👍 to vote yes.")
 
-					msg.channel.send({embed});
+					msg.channel.send({embed})
 						.then(() => msg.guild.member('519294665502228491').lastMessage.react('👍'))
 							.then(() => collection = msg.guild.member("519294665502228491").lastMessage.awaitReactions(filter, { time: 120000 }))
 								.then(collected => votes = collected.size)
@@ -333,7 +333,7 @@ bot.on("message", (msg) => {
 		const embed2 = new Discord.RichEmbed()
 			.setColor(color)
 			.setImage("https://i.imgur.com/3IF6IBX.gif")
-		msg.channel.send({embed: embed2})
+		msg.channel.send({embed: embed2});
 	};
 
 	if(command === "help"){
