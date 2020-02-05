@@ -22,17 +22,6 @@ bot.on("message", (msg) => {
 	}*/
 	//***THIS IS A LIBRARY***:🇦 🇧 🇨 🇩 🇪 🇫 🇬 🇭 🇮 🇯 🇰 🇱 🇲 🇳 🇴 🇵 🇶 🇷 🇸 🇹 🇺 🇻 🇼 🇽 🇾 🇿
 
-/*	let shitRole = msg.guild.roles.find("name", "Shit Taste");
-	if(msg.member.roles.has(shitRole.id)){
-		msg.react("💩")
-	}
-*/
-
-// 	let rekt = msg.guild.roles.find("name","Rekted");
-
-/*	if(msg.member.roles.has(rekt.id)){
-		msg.react("🇷").then(() => msg.react("🇪")).then(() => msg.react("🇰")).then(() => msg.react("🇹"));
-	}*/
   //everytime a message is sent, the bot grabs it and uses it here:
 	 if (!msg.content.startsWith(config.prefix)) {return;}
 
@@ -72,7 +61,7 @@ bot.on("message", (msg) => {
 
 			if(command === "camp"){
 				perms = msg.member.permissions;
-
+				msg.delete();
 				if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
 					splice = argument.splice(1)
 					user = msg.mentions.users.first()
@@ -81,48 +70,43 @@ bot.on("message", (msg) => {
 					msg.guild.member(user).addRole(camp.id);
 					msg.channel.send("Camped "+user+" for: "+reason);
 					msg.guild.member(user).send("Camped for: "+reason);
-					if(msg.channel.type !== "dm"){ msg.delete(); }
 				}else{
-					if(msg.channel.type !== "dm"){ msg.delete(); }
 					msg.author.send("How about no.");
 				}
 			};
 
 			if(command === "uncamp"){
+				msg.delete();
 				if(msg.member.roles.has(remoteHolders.id)){
 					user = msg.mentions.users.first();
 					msg.guild.member(user).removeRole(camp.id);
-					if(msg.channel.type !== "dm"){ msg.delete(); }
 				}else{
-					if(msg.channel.type !== "dm"){ msg.delete(); }
 					msg.author.send("No perms for you.");
 				}
 			};
 
 			if(command === "fabio"){
+				msg.delete();
 				if(msg.author.id === "259024176319430656"){
 					msg.author.send("Faggio")
-					if(msg.channel.type !== "dm"){ msg.delete(); }
 				}else{
 					msg.guild.member("259024176319430656").addRole(camp.id);
-					if(msg.channel.type !== "dm"){ msg.delete(); }
 				}
 			};
 
 			if(command === "unfabio"){
+				msg.delete();
 				if(msg.author.id === "259024176319430656"){
 					msg.author.send("you thought");
 				}else{
 					msg.guild.member("259024176319430656").removeRole(camp.id);
-					if(msg.channel.type !== "dm"){ msg.delete(); }
 				}
 			};
 		}
 		/////////////////END OF RABBITS COMMANDS////////////////////////////////
 
 		if(command === "getuserinfo"){
-			if(msg.channel.type !== "dm"){ msg.delete(); }
-
+			msg.delete();
 			perms = msg.member.permissions;
 
 			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
@@ -173,8 +157,7 @@ bot.on("message", (msg) => {
 		}
 
 		if(command === "del"){
-			if(msg.channel.type !== "dm"){ msg.delete(); }
-
+			msg.delete();
 			perms = msg.member.permissions;
 
 			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
@@ -190,6 +173,7 @@ bot.on("message", (msg) => {
 		};
 
 		if(command === "pm"){
+			msg.delete();
 			perms = msg.member.permissions;
 
 			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
@@ -198,7 +182,6 @@ bot.on("message", (msg) => {
 				argument = argument.splice(rec, 1);
 				let message = argument.join(" ");
 				msg.mentions.users.first().send(""+message+"");
-				if(msg.channel.type !== "dm"){ msg.delete(); }
 			}else{
 				msg.author.send(":joy: :joy: :joy: :joy: :joy: :joy: :joy: :rage: :rage: :joy: :joy: :joy: :joy: :joy: :joy: :joy: :joy:");
 				msg.author.send(":joy: :joy: :joy: :joy: :joy: :joy: :rage: :rage: :rage: :joy: :joy: :joy: :joy: :joy: :joy: :joy: :joy:");
@@ -217,28 +200,11 @@ bot.on("message", (msg) => {
 				msg.author.send(":joy: :joy: :joy: :joy: :joy: :joy: :joy: :joy: :joy: :rage: :rage: :rage: :joy: :joy: :joy: :joy: :joy:");
 				msg.author.send(":joy: :joy: :joy: :joy: :joy: :joy: :joy: :joy: :rage: :rage: :rage: :joy: :joy: :joy: :joy: :joy: :joy:");
 				msg.author.send(":joy: :joy: :joy: :joy: :joy: :joy: :joy: :joy: :rage: :rage: :joy: :joy: :joy: :joy: :joy: :joy: :joy:");
-				if(msg.channel.type !== "dm"){ msg.delete(); }
 			}
 		};
 
-/*		if(command === "sentai"){
-			if(msg.channel.type !== "dm"){ msg.delete(); }
-			perms = msg.member.permissions;
-
-			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"]) || msg.author.id === "446419931286863883"){
-
-				mention = msg.mentions.users
-				rec = argument.indexOf(mention)
-				argument.splice(mention, 1)
-				type = [".jpg", ".png"];
-				file = type[Math.floor(Math.random() * type.length)];
-				choice = [Math.floor(Math.random() * 1805)];
-				msg.mentions.users.first().sendFile("/folder/file ("+ choice +").jpg");
-			}
-		};*/
-
-
-		if(command === "name") {
+		if(command === "rename") {
+			msg.delete();
 			perms = msg.member.permissions;
 
 			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
@@ -246,12 +212,11 @@ bot.on("message", (msg) => {
 				splice = argument.splice(user, 1);
 				name = argument.join(" ");
 				msg.guild.member(user).setNickname(name);
-				if(msg.channel.type !== "dm"){ msg.delete(); }
 			}
 		};
 
 		if(command === "clear") {
-			if(msg.channel.type !== "dm"){ msg.delete(); }
+			msg.delete();
 			perms = msg.member.permissions;
 
 			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
@@ -260,6 +225,7 @@ bot.on("message", (msg) => {
 		};
 
 		if(command === "purge"){
+			msg.delete();
 			perms = msg.member.permissions;
 
 			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
@@ -272,30 +238,28 @@ bot.on("message", (msg) => {
 		};
 
 		if(command === "ban"){
+			msg.delete();
 			perms = msg.member.permissions;
 
-			if(msg.channel.type !== "dm"){
-				msg.delete();
-				if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
-				 	target = msg.guild.member(msg.mentions.users.first());
-					reason = argument.splice(1,argument.length).join(" ");
-					target.ban(reason);
-					msg.channel.send(target + " banned for: " + reason);
-				}
+			msg.delete();
+			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
+			 	target = msg.guild.member(msg.mentions.users.first());
+				reason = argument.splice(1,argument.length).join(" ");
+				target.ban(reason);
+				msg.channel.send(target + " banned for: " + reason);
 			}
 		}
 
 		if(command === "kick"){
+			msg.delete();
 			perms = msg.member.permissions;
 
-			if(msg.channel.type !== "dm"){
-				msg.delete();
-				if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS","MANAGE_CHANNELS","MANAGE_GUILD"])){
-					target = msg.guild.member(msg.mentions.users.first());
-					reason = argument.splice(1,argument.length).join(" ");
-					target.kick(reason);
-					msg.channel.send(target + " kicked for: " + reason);
-				}
+			msg.delete();
+			if(perms.has(["ADMINISTRATOR", "KICK_MEMBERS","BAN_MEMBERS"])){
+				target = msg.guild.member(msg.mentions.users.first());
+				reason = argument.splice(1,argument.length).join(" ");
+				target.kick(reason);
+				msg.channel.send(target + " kicked for: " + reason);
 			}
 		}
 
@@ -337,26 +301,16 @@ bot.on("message", (msg) => {
 	};
 
 	if(command === "help"){
-		regList = ["greentext: posts a random greentext","*kick: kicks @'d user. Message after @ appears as kick reason","*ban: bans @'d user, Message after @ appears as ban reason.", "userinfo: retrieves info about you","*vote: calls a 30 second vote and determines outcome based on vote count","*getuserinfo: retrieves info about a person you @","*name: allows admins to quickly change usernames with an @","*purge: completely clears all messages loaded on a page","*clear: deletes a set number of messages defined my admin","*pm: sends a pm to whomever the admin @s","*del: deletes messages of @'d user from a set number of retrieved messages", "8ball", "rev: reverses message", "cry", "facepalm","fuck","choose: chooses a ranbdom selection from words in message","kmf: 'kill, marry, fuck'","doggo","rage","lenny","nazi","4FCG","autism","ree","owo","what","nigga","spicy","*power: sends a tts message","brits","friendly","o","deusvult","pooh","f","normie","rip","lmao","kek","kappa","noice","faggot","ayy","shook","eyebrows","dab","weeb","bait","joke","#neko: posts a random neko image"]
+		regList = ["*kick: kicks @'d user. Message after @ appears as kick reason","*ban: bans @'d user, Message after @ appears as ban reason.", "userinfo: retrieves info about you","*vote: calls a 30 second vote and determines outcome based on vote count","*getuserinfo: retrieves info about a person you @","*name: allows admins to quickly change usernames with an @","*purge: completely clears all messages loaded on a page","*clear: deletes a set number of messages defined my admin","*pm: sends a pm to whomever the admin @s","*del: deletes messages of @'d user from a set number of retrieved messages", "8ball", "rev: reverses message", "cry", "facepalm","fuck","choose: chooses a ranbdom selection from words in message","kmf: 'kill, marry, fuck'","doggo","rage","lenny","nazi","4FCG","autism","ree","owo","what","nigga","spicy","*power: sends a tts message","brits","friendly","o","deusvult","pooh","f","normie","rip","lmao","kek","kappa","noice","faggot","ayy","shook","eyebrows","dab","weeb","bait","joke"]
 		rabbitsList = ["fabio","unfabio","camp","uncamp"]
 		const embed = new Discord.RichEmbed()
 			.setAuthor('Command List', 'https://3c2ba678857e073c9506-9b92ffc51ccdc874f7e956dfcfbdbfba.ssl.cf5.rackcdn.com/meme-bot.png')
 			.setDescription("All commands must begin with the command identifier '..'")
 			.addField("Regular Commands", regList)
-			.addField("Rabb.its Commands(specific to Rabb.its server)", rabbitsList)
+			.addField("Rabb.its Commands(Only Available in Rabb.its Server)", rabbitsList)
 			.setColor(color)
-			.setFooter("* denotes an admin only command. # denotes commands that only work in DM.")
+			.setFooter("* denotes an admin only command.")
 		msg.author.send({embed});
-		if(msg.channel.type !== "dm"){ msg.delete(); }
-	};
-
-	if(command === "greentext") {
-		pool = ["https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/19/enhanced/webdr05/enhanced-buzz-9331-1429917116-6.jpg","http://i.imgur.com/pyIp2v3.png","https://1.bp.blogspot.com/-yOzUQAo2Yvw/VtBXBnEIJNI/AAAAAAAAFDk/uzuZWaklCII/s1600/taco-autism-greentext.jpg","http://static.fjcdn.com/pictures/Fallout+greentext+saw+this+on+b+laughed+way+too+hard_567c4b_5118072.png", "http://i.imgur.com/sRnj8pm.jpg","http://i.imgur.com/dQwCdbv.jpg","http://2static.fjcdn.com/pictures/More_e8db27_5797785.jpg","http://i.imgur.com/LhKEs4d.jpg","http://i.imgur.com/QSyOLyu.jpg","http://i.imgur.com/xwC3r6O.png","http://2static.fjcdn.com/pictures/More_ecc411_5797785.jpg","http://runt-of-the-web.com/wordpress/wp-content/uploads/2013/07/funniest-4chan-threads-an-american-in-paris.jpg","http://i.imgur.com/7hlFLBC.jpg","http://2static.fjcdn.com/pictures/Even_23a3ac_5797787.jpg","http://2static.fjcdn.com/pictures/Greentexts_a226d7_5797782.jpg","http://2static.fjcdn.com/pictures/Legendary+greentexts+part+2_f6851a_5689052.jpg","http://2.bp.blogspot.com/-XCkpr_n91w4/VD_GIMDZZWI/AAAAAAAAAGw/l-6d6zR0KBU/s1600/The%2BCanadian%2BWay.jpg","http://i.imgur.com/IeBxvrG.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/16/enhanced/webdr04/enhanced-buzz-18754-1429906819-51.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/16/enhanced/webdr12/enhanced-buzz-18466-1429908690-9.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/18/enhanced/webdr09/edit-13123-1429914583-31.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/18/enhanced/webdr08/edit-10913-1429914662-8.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/18/enhanced/webdr13/edit-12962-1429914558-19.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/18/enhanced/webdr13/enhanced-buzz-8023-1429914863-18.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/18/enhanced/webdr09/edit-13199-1429914607-10.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/16/enhanced/webdr12/enhanced-buzz-17803-1429907085-7.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/17/enhanced/webdr04/enhanced-buzz-4678-1429909918-11.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/18/enhanced/webdr10/enhanced-buzz-28695-1429915793-13.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/17/enhanced/webdr04/enhanced-buzz-3883-1429910787-13.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/18/enhanced/webdr01/enhanced-buzz-11580-1429915691-7.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/19/enhanced/webdr09/enhanced-buzz-31743-1429917678-15.jpg", "https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/19/enhanced/webdr10/enhanced-buzz-27376-1429918306-10.jpg","https://img.buzzfeed.com/buzzfeed-static/static/2015-04/24/16/enhanced/webdr14/enhanced-buzz-18947-1429908882-7.jpg", "http://i.imgur.com/iyMJUY7.png", "http://i2.kym-cdn.com/photos/images/original/000/404/482/a96.jpg", "http://static.fjcdn.com/pictures/Favourite+green+text+story+whats+your+favourite+green+text+stories_a37bd8_4795571.jpg","http://static.fjcdn.com/pictures/Green_e9a593_5404760.jpg","http://i0.kym-cdn.com/photos/images/newsfeed/000/708/133/371.jpg", "http://i2.kym-cdn.com/photos/images/original/000/570/506/950.jpg", "//i.imgur.com/nSg2oQN.jpg", "http://i3.kym-cdn.com/photos/images/original/000/139/260/630.jpg", "http://i3.kym-cdn.com/photos/images/facebook/000/708/109/95c.jpg","http://i3.kym-cdn.com/photos/images/original/001/111/108/8e5.png","http://i1.kym-cdn.com/photos/images/original/000/988/826/74e.jpg", "https://2static1.fjcdn.com/comments/Don+t+forget+the+boundless+amounts+of+unforgettable+green+text+stories+_fd304a678549d4cd7901556aa2d32786.jpg", "http://i2.kym-cdn.com/photos/images/facebook/000/912/451/8b8.jpg", "http://i0.kym-cdn.com/photos/images/newsfeed/000/408/309/70b.png", "http://i2.kym-cdn.com/photos/images/newsfeed/000/988/827/757.png", "http://i3.kym-cdn.com/photos/images/newsfeed/001/049/069/abe.jpg"]
-		let story = pool[Math.floor(Math.random() * pool.length)];
-		const embed = new Discord.RichEmbed()
-			.setImage(story)
-		  .setColor(0909090)
-		msg.channel.send({embed});
 		if(msg.channel.type !== "dm"){ msg.delete(); }
 	};
 
@@ -747,38 +701,12 @@ if(command === "dab"){
 	msg.channel.send({embed});
 };
 
-/*if(command === "hentai"){
-	if(msg.channel.type !== "dm"){
-		msg.delete();
-	}else{
-		var type = [".jpg", ".png"];
-		let file = type[Math.floor(Math.random() * type.length)];
-		let choice = [Math.floor(Math.random() * 1805)];
-		msg.channel.sendFile("/folder/file ("+ choice +").jpg");
-	}
-};*/
-
 if(command === "shit"){
 	if(msg.channel.type !== "dm"){ msg.delete(); }
 	const embed = new Discord.RichEmbed()
 		.setColor(color)
 		.setImage("https://cdn.discordapp.com/attachments/259022782757601280/373190311813578753/c76.jpg")
 	msg.channel.send({embed});
-};
-
-if(command === "neko"){
-	if(msg.channel.type !== "dm"){
-		msg.delete();
-	}else{
-		type = [".jpg", ".png"];
-		file = type[Math.floor(Math.random() * type.length)];
-		if(file === ".jpg"){
-			choice = [Math.floor(Math.random() * 37)];
-		}else{
-			choice = [Math.floor(Math.random() * 11)];
-		}
-		msg.channel.sendFile("folder2/file ("+ choice +")"+file);
-	}
 };
 
 if(command === "smart"){
@@ -815,14 +743,14 @@ if(command === "userinfo"){
 		.setDescription("Server: " + msg.guild.name)
 		.setThumbnail(user.avatarURL)
 		.setAuthor(user.tag, user.avatarURL)
-//		.addField("Email: ", cli.email)
+		//.addField("Email: ", cli.email)
 		.addField("Server Name: ", mem.nickname)
 		.addField("Server Standing: ", mem.highestRole.name)
 		.addField("Member Since: ", mem.joinedAt)
 		.addField("Discord Tag: ", user.username)
 		.addField("Account Created: ", user.createdAt)
-//		.addField("Premium Staus: ", prem)
-//		.addField("Verified: ", cli.verified)
+		//.addField("Premium Staus: ", prem)
+		//.addField("Verified: ", cli.verified)
 		//.addField("Premium since: ", premDate)
 		.addField("User ID: ", user.id)
 		.addField("Currently: ", user.presence.status)
